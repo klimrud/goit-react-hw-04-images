@@ -13,16 +13,19 @@ export const useImageSearch = () => {
     if (query === '') return;
 
     const fetchImages = async () => {
+       setIsLoading(true);
       try {
         const response = await getImages(query, page);
+        
         if (response.hits.length === 0) {
           // console.log('length 0');
           setError(true);
           setDisabled(false);
         } else if (response.totalHits > 12) {
           // console.log('response.totalHits > 12', response.totalHits);
-          setImages(images => [...images, ...response.hits]);
           setIsLoading(true);
+          setImages(images => [...images, ...response.hits]);
+          
           setDisabled(true);
           setError(false);
         }

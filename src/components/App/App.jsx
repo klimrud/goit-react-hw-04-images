@@ -6,7 +6,7 @@ import { Searchbar } from 'components/Searchbar';
 import { ImageGallery } from 'components/ImageGallery';
 import { Button } from 'components/Button';
 import { Modal } from 'components/Modal';
-// import { Loader } from 'components/Loader';
+import { Loader } from '../Loader/Loader';
 import { ErrorCard } from 'components/Error/ErrorCard';
 
 import css from './App.module.css';
@@ -39,7 +39,7 @@ export const App = () => {
 
       {isLoading && (
         <>
-          {/* <Loader isLoading={isLoading} /> */}
+          <Loader isLoading={isLoading} />
           <h1>Loading...</h1>
         </>
       )}
