@@ -20,7 +20,8 @@ export const App = () => {
     handleFormSubmit,
     handleLoadMore,
   } = useImageSearch();
- 
+
+  // const [isLoading, setIsLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const [largeImageURL, setLargeImageURL] = useState('');
 
@@ -37,22 +38,22 @@ export const App = () => {
     <div className={css.app}>
       <Searchbar onSubmit={handleFormSubmit} />
 
-      {isLoading && (
+      {!isLoading && (
         <>
           <Loader isLoading={isLoading} />
           <h1>Loading...</h1>
         </>
       )}
       {error && (
-          <ErrorCard>
-            Whoops, something went wrong: !!!Sorry, there are no images matching
-            your search query. Please try again.
-          </ErrorCard>
-        )}
+        <ErrorCard>
+          Whoops, something went wrong: !!!Sorry, there are no images matching
+          your search query. Please try again.
+        </ErrorCard>
+      )}
       <ImageGallery images={images} onImageClick={handleImageClick} />
 
       {!disabled || <Button onClickLoader={handleLoadMore} />}
-      
+
       {showModal && (
         <Modal onCloseModal={toggleModal}>
           <img src={largeImageURL} alt={''} width="800" height="600" />

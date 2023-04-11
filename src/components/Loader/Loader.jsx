@@ -1,12 +1,12 @@
-import ClipLoader from 'react-spinners/ClipLoader';
+import MoonLoader from 'react-spinners/MoonLoader';
 
-export const Loader = ({ isLoading }) => {
+export const Loader = () => {
   return (
-    <ClipLoader
+    <MoonLoader
       color="blue"
       size={50}
       aria-label="Loading Spinner"
-      isLoading={isLoading}
+      // isLoading={isLoading}
     />
   );
 };

@@ -3,7 +3,6 @@ import { PropTypes } from 'prop-types';
 // import { Loader } from 'components/Loader';
 import { ImageGalleryItem } from 'components/ImageGalleryItem';
 
-
 import css from './ImageGallery.module.css';
 
 export const ImageGallery = ({ images = [], onImageClick }) => {

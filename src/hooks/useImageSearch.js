@@ -6,30 +6,27 @@ export const useImageSearch = () => {
   const [images, setImages] = useState([]);
   const [page, setPage] = useState(1);
   const [error, setError] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [disabled, setDisabled] = useState(false);
 
   useEffect(() => {
     if (query === '') return;
 
     const fetchImages = async () => {
-       setIsLoading(true);
       try {
         const response = await getImages(query, page);
-        
+
         if (response.hits.length === 0) {
-          // console.log('length 0');
+          setIsLoading(true);
           setError(true);
           setDisabled(false);
         } else if (response.totalHits > 12) {
-          // console.log('response.totalHits > 12', response.totalHits);
           setIsLoading(true);
           setImages(images => [...images, ...response.hits]);
-          
+
           setDisabled(true);
           setError(false);
         }
-        setIsLoading(false);
       } catch {
         console.error('Error');
         setError(true);
@@ -38,6 +35,7 @@ export const useImageSearch = () => {
     };
 
     fetchImages();
+    setIsLoading(false);
   }, [page, query]);
 
   const handleFormSubmit = query => {
